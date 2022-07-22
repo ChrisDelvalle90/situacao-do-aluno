@@ -29,7 +29,20 @@ function adicionar()
 
 function substituiNota()
 {
-    
+    let novaNota = document.getElementById("novaNota").value
+    console.log(novaNota)
+    console.log(menor)
+    if(novaNota > menor)
+    {
+        for(let i = 0; i < listaNotas.length; i++)
+        {
+            document.getElementById("tNotas").innerText = listaNotas[i].addNotas.toString().replace("menor", "novaNota")
+        }
+    }
+    else
+    {
+        alert("Não substitui")
+    }
 }
 
 function maiorNota()
