@@ -27,24 +27,6 @@ function adicionar()
     }
 }
 
-function substituiNota()
-{
-    let novaNota = document.getElementById("novaNota").value
-    console.log(novaNota)
-    console.log(menor)
-    if(novaNota > menor)
-    {
-        for(let i = 0; i < listaNotas.length; i++)
-        {
-            document.getElementById("tNotas").innerText = listaNotas[i].addNotas.toString().replace("menor", "novaNota")
-        }
-    }
-    else
-    {
-        alert("Não substitui")
-    }
-}
-
 function maiorNota()
 {
     maior = Math.max(...listaNotas)
@@ -55,12 +37,39 @@ function menorNota()
 {
     menor = Math.min(...listaNotas)
     document.getElementById("menorNota").innerText = menor
+
+    return menor
 }
 
 function calcMedia()
 {
     media =  (soma / listaNotas.length)
-    document.getElementById("media").innerText = media.toFixed(1)
+    document.getElementById("media").innerText = media.toFixed(1).replace(".", ",")
+}
+
+function novaMedia()
+{
+    let novaMedia = (soma / listaNotas.length)
+    document.getElementById("media").innerText = novaMedia.toFixed(1).replace(".", ",")
+}
+
+function substituiNota()
+{
+    let novaNota = document.getElementById("novaNota").value
+    novaNota = parseFloat(novaNota)
+    let menor = 11
+    for(let i = 0; i < listaNotas.length; i++)
+    {
+        if(listaNotas[i] < menor)
+        {
+            menor = listaNotas[i]
+            indice = i
+        }
+        novaMedia()
+    }
+    listaNotas[indice] = novaNota
+    document.getElementById("substitutiva").innerText = listaNotas[indice]
+    document.getElementById("tNotas").innerText = listaNotas.join(" , ")
 }
 
 function situacaoAluno()
@@ -82,5 +91,4 @@ function situacaoAluno()
         situacao.innerText = "APROVADO"
         situacao.style.color = "green"
     }
-
 }
