@@ -10,40 +10,36 @@
 </head>
 
 <body>
-    <div class="card">
         <h1>Situação do Aluno</h1>
-
-        <div>
+        <div class="card" id="oculta1">
             <input type="number" placeholder="Nota" id="nota">
             <button onclick="adicionar()">Adicionar</button>
-            <button>Finalizar</button>
+            <button onclick="finalizar()">Finalizar</button>
+            <h3>Média: </h3>
+            <span id="media"></span>
+            <h3>Notas Adicionadas: </h3>
+            <span id="addNotas"></span>
+            <h3>Situação do aluno: </h3>
+            <span id="situacao"></span>
         </div>
-    </div>
 
-    <div class="card2">
-        <h3>Notas Adicionadas: </h3>
-        <span id="addNotas"></span>
-    </div>
-
-    <div class="card2">
-        <input type="number" placeholder="Nota substitutiva" id="novaNota">
-        <button onclick="substituiNota()">Substituir</button>
-        <button>Retornar</button>
-    </div>
-
-    <div class="card2">
-        <h3>Notas: </h3>
-        <span id="tNotas"></span>
-        <h3>Maior nota: </h3>
-        <span id="maiorNota"></span>
-        <h3>Menor nota: </h3>
-        <span id="menorNota"></span>
-        <h3>Média: </h3>
-        <span id="media"></span>
-        <h3>Substitutiva: </h3>
-        <span id="substitutiva"></span>
-        <h3>Situação do aluno: </h3>
-        <span id="situacao"></span>
-    </div> 
+        <div class="card" id="oculta2">
+            <h3>Maior nota: </h3>
+            <span id="maiorNota"></span>
+            <h3>Menor nota: </h3>
+            <span id="menorNota"></span>
+        </div>
+        
+        <div class="card2" id="revela">
+            <input type="number" placeholder="Nota substitutiva" id="novaNota">
+            <button onclick="substituiNota()">Substituir</button>
+            <button onclick="">Retornar</button>
+            <h3>Notas: </h3>
+            <span id="tNotas"></span>
+            <h3>Substitutiva: </h3>
+            <span id="substitutiva"></span>
+            <h3>Nova Média:</h3>
+            <span id="novaMedia"></span>
+        </div> 
 </body>
 </html>

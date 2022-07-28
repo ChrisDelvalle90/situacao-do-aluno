@@ -12,13 +12,14 @@ function adicionar()
     }
     else
     {
+        nota = parseFloat(nota)
         listaNotas.push(nota)
         for(let i = 0; i < listaNotas.length; i++)
         {
             soma += parseFloat(listaNotas[i])
         }
         document.getElementById("nota").value = ""
-        document.getElementById("tNotas").innerText = listaNotas.join(" , ")
+        // document.getElementById("tNotas").innerText = listaNotas.join(" , ")
         document.getElementById("addNotas").innerText = listaNotas.join(" , ")
         maiorNota()
         menorNota()
@@ -44,32 +45,61 @@ function menorNota()
 function calcMedia()
 {
     media =  (soma / listaNotas.length)
-    document.getElementById("media").innerText = media.toFixed(1).replace(".", ",")
+    document.getElementById("media").innerText = media.toFixed(2).replace(".", ",")
 }
 
 function novaMedia()
 {
     let novaMedia = (soma / listaNotas.length)
-    document.getElementById("media").innerText = novaMedia.toFixed(1).replace(".", ",")
+    document.getElementById("novaMedia").innerText = novaMedia.toFixed(2).replace(".", ",")
 }
 
+// function substituiNota()
+// {
+//     let novaNota = document.getElementById("novaNota").value
+//     novaNota = parseFloat(novaNota)
+//     let menor = 11
+//     for(let i = 0; i < listaNotas.length; i++)
+//     {
+//         if(listaNotas[i] < menor)
+//         {
+//             menor = listaNotas[i]
+//             indice = i
+//         }
+//         novaMedia()
+//     }
+//     listaNotas[indice] = novaNota
+//     document.getElementById("substitutiva").innerText = listaNotas[indice]
+//     document.getElementById("tNotas").innerText = listaNotas.join(" , ")
+// }
+
 function substituiNota()
-{
+{   
+    soma = 0
     let novaNota = document.getElementById("novaNota").value
-    novaNota = parseFloat(novaNota)
-    let menor = 11
-    for(let i = 0; i < listaNotas.length; i++)
+    let indexNota = listaNotas.indexOf(menorNota())
+
+    if(novaNota == "")
     {
-        if(listaNotas[i] < menor)
+        alert("Preencha o campo!")
+    }
+    else
+    {
+        novaNota = parseFloat(novaNota)
+
+        if(novaNota > listaNotas[indexNota])
         {
-            menor = listaNotas[i]
-            indice = i
+            listaNotas[indexNota] = novaNota
+        }
+        for(let i = 0; i < listaNotas.length;i++)
+        {
+            soma += parseFloat(listaNotas[i])
         }
         novaMedia()
+        document.getElementById("novaNota").value = ""
+        document.getElementById("tNotas").innerText = listaNotas.join(" , ")
+        document.getElementById("substitutiva").innerText = listaNotas[indexNota]
     }
-    listaNotas[indice] = novaNota
-    document.getElementById("substitutiva").innerText = listaNotas[indice]
-    document.getElementById("tNotas").innerText = listaNotas.join(" , ")
 }
 
 function situacaoAluno()
@@ -91,4 +121,11 @@ function situacaoAluno()
         situacao.innerText = "APROVADO"
         situacao.style.color = "green"
     }
+}
+
+function finalizar()
+{
+    document.getElementById("oculta1").style.display = "none"
+    document.getElementById("oculta2").style.display = "none"
+    document.getElementById("revela").style.display = "block"
 }
